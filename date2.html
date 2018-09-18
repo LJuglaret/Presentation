@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>reveal-md</title>
+        <link rel="stylesheet" href="./css/reveal.css">
+        <link rel="stylesheet" href="./css/theme/black.css" id="theme">
+        <link rel="stylesheet" href="./css/highlight/zenburn.css">
+        <link rel="stylesheet" href="./css/print/paper.css" type="text/css" media="print">
+
+
+    </head>
+    <body>
+
+        <div class="reveal">
+            <div class="slides"><section  data-markdown><script type="text/template"><!--
+- title : partie 2
+Créer son type date en elm
+
+- description :
+ Le 29 Février 2100 existe t il ?
+Nous allons voir comment grace aux types d Elm nous allons garantir la validité d une date à la compilation.
+Cet exemple permettra de comprendre l usage des let-exressions et des types algebriques.
+
+- author : Laure Juglaret
+- theme : solarized.css
+- transition : convex
+- slideNumber : true -->  
+
+<style type="text/css">
+  .reveal li code { font-size:  100%; width : 600pt; }
+</style>
+
+
+#  partie 2  bibli Date en elm
+
+</script></section><section ><section data-markdown><script type="text/template">- on peut redéfinir des operations arithmétiques
+entre une  date et un nombre de jours :
+ - <+> addition
+ - <-> soustraction
+
+    Une convention peut etre d appliquer
+    les regles habituelles de l arthmetique
+
+    Par exemple : 
+    date <+> -3  : revient a date <-> 3</script></section><section data-markdown><script type="text/template">- Mais aussi des operations booleennes entre deux dates
+    - <=
+    - >=
+    - ==
+    - <
+    - ></script></section><section data-markdown><script type="text/template">- Étape 1 : Écrire une fonction qui compare deux dates (Order)
+- Étape 2 : On définit supOuEgal(>=) et egal(==) grâce a la fonction précédente
+- Etape 3 : On déduit les autres: 
+    - <  :  non(>=)
+    - >  :  non(<) et (non (==))
+    - <= :  <  ou ==
+</script></section></section><section  data-markdown><script type="text/template">
+Affichage
+Pour une meilleure visualisation on affiche une date
+sous la forme Jour - NºJour  Mois - Annee
+```elm
+aff : Maybe Date2 -> String 
+```
+Exp 
+```elm
+date3 = newDate{jour = 11, mois = Septembre, annee = 2018}
+aff date3
+``` 
+
+"Mardi - 11 Septembre - 2018" 
+
+</script></section></div>
+        </div>
+
+        <script src="./lib/js/head.min.js"></script>
+        <script src="./js/reveal.js"></script>
+
+        <script>
+            function extend() {
+              var target = {};
+              for (var i = 0; i < arguments.length; i++) {
+                var source = arguments[i];
+                for (var key in source) {
+                  if (source.hasOwnProperty(key)) {
+                    target[key] = source[key];
+                  }
+                }
+              }
+              return target;
+            }
+
+            // Optional libraries used to extend on reveal.js
+            var deps = [
+              { src: './lib/js/classList.js', condition: function() { return !document.body.classList; } },
+              { src: './plugin/markdown/marked.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+              { src: './plugin/markdown/markdown.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+              { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+              { src: './plugin/zoom-js/zoom.js', async: true },
+              { src: './plugin/notes/notes.js', async: true },
+              { src: './plugin/math/math.js', async: true }
+            ];
+
+            // default options to init reveal.js
+            var defaultOptions = {
+              controls: true,
+              progress: true,
+              history: true,
+              center: true,
+              transition: 'default', // none/fade/slide/convex/concave/zoom
+              dependencies: deps
+            };
+
+            // options from URL query string
+            var queryOptions = Reveal.getQueryHash() || {};
+
+            var options = {};
+            options = extend(defaultOptions, options, queryOptions);
+        </script>
+
+
+        <script>
+          Reveal.initialize(options);
+        </script>
+    </body>
+</html>
