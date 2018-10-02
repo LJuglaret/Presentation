@@ -12,9 +12,6 @@ Cet exemple permettra de comprendre l usage des let-exressions et des types alge
 - transition : convex
 - slideNumber : true -->  
 
-<style type="text/css">
-  .reveal li code { font-size:  100%; width : 600pt; }
-</style>
 
 
 #  partie 1 Créer un type Date en elm
@@ -22,7 +19,7 @@ Cet exemple permettra de comprendre l usage des let-exressions et des types alge
 
 ---
 
-## Premiere approche
+## Première approche
 
 
 ```elm
@@ -33,14 +30,14 @@ type alias Date  = {jour : Int , mois : Int, annee : Int}
 
 ```
 ---
-Quel est le probleme
+Quel est le problème
 
 - jour est un entier relatif , or il doit etre dans intervalle dependant du mois
 - mois est un entier relatif, or il doit etre compris entre 1 et 12
 
 ----
 
-Exemples _
+Exemples 
 
 ```elm
 (jour = 11 , mois = 12, annee = 1988) est une date valide 
@@ -51,9 +48,9 @@ mais
 ```
 ---
 
-Debut de solution
+Début de solution
 
-- Representer les mois sous forme d une enumeration
+- Représenter les mois sous forme d une énumeration
 ``` elm
 type Mois = Janvier
             |Fevrier
@@ -67,10 +64,10 @@ type Mois = Janvier
 
 ---
 
-Cela ne repond qu a la moitie du probleme
+Cela ne repond qu a la moitié du problème
 il faut aussi avoir un jour qui a du sens
 
-On aura besoin d une fonction permettant permettant
+On aura besoin d une fonction permettant 
 pour chaque element de type Mois d avoir les informations le concernant :
 
 ``` elm
@@ -86,10 +83,10 @@ listeInfoMois m =
 ```
 
 ----
-premiere solution
+première solution
 
 Ecrire une fonction dateValide qui en fonction de l annee (bissextile ou non),
-    de la coherence du jour en fonction du mois renverra un Maybe de date
+    de la cohérence du jour en fonction du mois renverra un Maybe de date
 
     ```elm
     date1 =  {jour = 28, mois = Decembre, annee = 2018}
